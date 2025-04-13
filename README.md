@@ -1,5 +1,7 @@
 # Animación Interactiva de Caída Libre con Manim y Streamlit
 
+<p align="center"><img src="/Screen_app.png" /></p>
+
 <p align="center"><img src="/CaidaLibre_ManimCE_v0.19.0.gif" /></p>
 
 ## Descripción

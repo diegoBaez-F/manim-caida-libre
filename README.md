@@ -1,99 +1,67 @@
-# Animación de Caída Libre con Manim
+# Animación Interactiva de Caída Libre con Manim y Streamlit
 
-<p align="center"><img src ="/CaidaLibre_ManimCE_v0.19.0.gif" /></p>
+<p align="center"><img src="/CaidaLibre_ManimCE_v0.19.0.gif" /></p>
 
 ## Descripción
 
-Este proyecto implementa una animación de caída libre utilizando la biblioteca Manim, dividida en tres módulos principales:
+Este proyecto implementa una animación interactiva de caída libre utilizando las bibliotecas **Manim** y **Streamlit**. La app permite modificar la **altura inicial** del objeto en caída libre de manera interactiva, mostrando los gráficos de **posición**, **velocidad** y **aceleración** en tiempo real, junto con un reloj que muestra el tiempo transcurrido.
 
-1. **ejes.py**: Contiene funciones para crear ejes coordenados y gráficas de posición, velocidad y aceleración vs tiempo.
+La aplicación se divide en tres módulos principales:
+
+1. **ejes.py**: Contiene funciones para crear los ejes coordenados y las gráficas de posición, velocidad y aceleración vs tiempo.
 2. **reloj.py**: Implementa un reloj analógico que se actualiza en tiempo real durante la animación.
-3. **main.py**: Combina los componentes para crear la animación principal de caída libre.
+3. **main.py**: Combina los componentes para crear la animación principal de caída libre y permite la interacción del usuario con Streamlit.
+4. **streamlit_app.py**: El archivo principal de la aplicación interactiva que utiliza **Streamlit** para permitir la modificación de la altura y la selección de la calidad de la animación de manera sencilla. También genera el archivo `altura.txt` y muestra el video resultante.
 
 ## Características Principales
 
-- Animación física realista de un objeto en caída libre
+- Animación interactiva de caída libre con ajuste de altura en tiempo real.
 - Tres gráficos sincronizados:
-  - Posición vs tiempo (y vs t)
-  - Velocidad vs tiempo (v vs t)
-  - Aceleración vs tiempo (a vs t)
-- Reloj analógico que muestra el tiempo transcurrido
-- Trazas que se dibujan en tiempo real en los gráficos
+  - **Posición vs tiempo (y vs t)**
+  - **Velocidad vs tiempo (v vs t)**
+  - **Aceleración vs tiempo (a vs t)**
+- Reloj analógico que muestra el tiempo transcurrido.
+- Trazas que se dibujan en tiempo real en los gráficos.
+- Configuración interactiva de parámetros a través de **Streamlit**.
+- Generación dinámica de videos en **baja**, **media** o **alta** calidad.
 
 ## Requisitos
 
 - Python 3.7+
-- Manim Community
+- Manim Community Edition
+- Streamlit
 
-## Estructura del Código
+## Instalación
 
-### Módulo ejes.py
+Para ejecutar este proyecto, primero debes instalar las dependencias necesarias. Asegúrate de tener Python 3.7 o superior.
 
-Contiene tres funciones para crear sistemas de ejes:
+1. Clona este repositorio o descárgalo.
+2. Instala las dependencias:
 
-1. `crear_ejes_y_vs_t(t_max, h_real)`: Crea ejes para posición vs tiempo
-   - Eje x: tiempo (0 a t_max)
-   - Eje y: posición (0 a h_real)
-   - Color amarillo
-
-2. `crear_ejes_v_vs_t(t_max, g, y_vs_t_axes)`: Crea ejes para velocidad vs tiempo
-   - Eje x: tiempo (0 a t_max)
-   - Eje y: velocidad (negativa, proporcional a g*t_max)
-   - Color naranja
-
-3. `crear_ejes_a_vs_t(t_max, g)`: Crea ejes para aceleración vs tiempo
-   - Eje x: tiempo (0 a t_max)
-   - Eje y: aceleración (-g a 0)
-   - Color azul
-
-Cada función devuelve un VGroup que contiene los ejes y una grilla decorativa.
-
-### Módulo reloj.py
-
-Implementa la clase `Reloj` que muestra:
-- Manecilla de segundos (roja)
-- Manecilla de centésimas (azul)
-- Números del 1 al 12 como marcadores horarios
-
-El reloj se actualiza automáticamente usando un ValueTracker para seguir el tiempo de la simulación.
-
-### Módulo main.py
-
-Clase principal `CaidaLibre` que:
-1. Configura parámetros físicos (altura inicial, gravedad, tiempo máximo)
-2. Crea la pelota con rotación proporcional a la velocidad
-3. Instancia el reloj
-4. Crea los tres sistemas de ejes
-5. Implementa puntos móviles y trazas para cada gráfico
-6. Ejecuta la animación principal
-
-## Cómo Ejecutar
-
-1. Instalar las dependencias:
+   ```bash
+   pip install manim streamlit
    ```
-   pip install manim
-   ```
+## Ejecución
+Para ver la animación directamente en Streamlit, ejecuta el siguiente comando en la terminal:
 
-2. Ejecutar la animación:
-   ```
-   manim -pql main.py CaidaLibre
-   ```
+```bash
+streamlit run streamlit_app.py
+```
 
-   (Para renderizado de mayor calidad, usar `-pqh` o `-pqm` en lugar de `-pql`)
+La app de Streamlit abrirá una interfaz en un navegador donde podrás modificar la altura inicial del objeto en caída libre. Los gráficos se actualizarán en tiempo real y podrás generar un video de la animación con la calidad que elijas.
 
-## Personalización
+Selecciona la calidad del video desde las opciones de calidad y presiona el botón Generar animación. El video generado aparecerá en la página.
 
-Puedes modificar los siguientes parámetros en main.py:
-- `h_real`: Altura inicial del objeto
-- `g`: Aceleración gravitatoria
-- `y_top`: Posición vertical inicial de la pelota en la pantalla
-- `y_bottom`: Posición vertical final de la pelota en la pantalla
+## Estructura del Proyecto
 
-## Notas
-
-- Se asume la existencia de una imagen "ball.png" para representar la pelota
-- La duración de la animación se calcula automáticamente según las ecuaciones de caída libre
-- Todos los gráficos están sincronizados con el tiempo real de la simulación
+├── streamlit_app.py # La aplicación interactiva en Streamlit 
+├── main.py # Lógica principal de la animación de caída libre 
+├── ejes.py # Funciones para crear los ejes de los gráficos 
+├── reloj.py # Implementación del reloj que se actualiza en tiempo real 
+├── altura.txt # Archivo con la altura inicial de la caída
+├── ball.png # Archivo con la imagen del objeto
+├── LICENSE # Licencia
+└── README.md # Este archivo con la documentación del proyecto
 
 ## Licencia
 

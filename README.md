@@ -53,7 +53,7 @@ La app de Streamlit abrirá una interfaz en un navegador donde podrás modificar
 Selecciona la calidad del video desde las opciones de calidad y presiona el botón Generar animación. El video generado aparecerá en la página.
 
 ## Estructura del Proyecto
-
+```python
 ├── streamlit_app.py # La aplicación interactiva en Streamlit 
 ├── main.py # Lógica principal de la animación de caída libre 
 ├── ejes.py # Funciones para crear los ejes de los gráficos 
@@ -62,6 +62,7 @@ Selecciona la calidad del video desde las opciones de calidad y presiona el bot�
 ├── ball.png # Archivo con la imagen del objeto
 ├── LICENSE # Licencia
 └── README.md # Este archivo con la documentación del proyecto
+```
 
 ## Licencia
 
